@@ -28,7 +28,7 @@ BOT_TOKEN = environ.get('BOT_TOKEN', "")
 CACHE_TIME = int(environ.get('CACHE_TIME', 300))
 USE_CAPTION_FILTER = bool(environ.get('USE_CAPTION_FILTER', True))
 
-PICS = (environ.get('PICS', 'https://envs.sh/gY0.jpeg https://envs.sh/fge.jpg https://envs.sh/fra.jpg https://envs.sh/fHV.jpg https://envs.sh/fsB.jpg https://envs.sh/fgi.jpg https://envs.sh/fsn.jpg https://envs.sh/fgD.jpg https://envs.sh/fgb.jpg https://envs.sh/fsS.jpg https://envs.sh/fgP.jpg https://envs.sh/fgh.jpg https://envs.sh/fsT.jpg https://envs.sh/fgw.jpg https://envs.sh/fsA.jpg https://envs.sh/fgF.jpg https://envs.sh/fgq.jpg https://envs.sh/fs_.jpg https://envs.sh/fgt.jpg')).split()  # Sample pic
+PICS = (environ.get('PICS', 'https://filetolink82ii-f4c643c99a54.herokuapp.com/stream/992093?hash=dcfd71&d=true')).split()  # Sample pic
 NOR_IMG = environ.get("NOR_IMG", "https://graph.org/file/e20b5fdaf217252964202.jpg")
 MELCOW_VID = environ.get("MELCOW_VID", "https://envs.sh/aPc.mp4")
 SPELL_IMG = environ.get("SPELL_IMG", "https://graph.org/file/13702ae26fb05df52667c.jpg")
@@ -45,7 +45,7 @@ BIN_CHANNEL = int(environ.get('BIN_CHANNEL', '-1002930434287'))  # Bin channel i
 DEENDAYAL_MOVIE_UPDATE_CHANNEL = int(environ.get('DEENDAYAL_MOVIE_UPDATE_CHANNEL', '1002545977673'))  # Notification of those who verify will be sent to your channel
 PREMIUM_LOGS = int(environ.get('PREMIUM_LOGS', '0'))  # Premium logs channel id
 auth_channel = environ.get('AUTH_CHANNEL', '-1002657262381')  # Channel/Group ID for force sub (make sure bot is admin)
-DELETE_CHANNELS = [int(dch) if id_pattern.search(dch) else dch for dch in environ.get('DELETE_CHANNELS', '-1002370487322').split()]
+DELETE_CHANNELS = [int(dch) if id_pattern.search(dch) else dch for dch in environ.get('DELETE_CHANNELS', '-1003256554840').split()]
 support_chat_id = environ.get('SUPPORT_CHAT_ID', '0')  # Support group id (make sure bot is admin)
 reqst_channel = environ.get('REQST_CHANNEL_ID', '0')  # Request channel id (make sure bot is admin)
 AUTH_CHANNEL = [int(fch) if id_pattern.search(fch) else fch for fch in environ.get('AUTH_CHANNEL', '-1002151971318').split()]
@@ -93,9 +93,9 @@ IS_TUTORIAL = bool(environ.get('IS_TUTORIAL', False))
 # ============================
 # Channel & Group Links Configuration
 # ============================
-GRP_LNK = environ.get('GRP_LNK', 'https://t.me/+9L7rvB_oh0BhNWRl')
-CHNL_LNK = environ.get('CHNL_LNK', 'https://t.me/+9L7rvB_oh0BhNWRl')
-OWNER_LNK = environ.get('OWNER_LNK', 'https://t.me/Brand_01_01')
+GRP_LNK = environ.get('GRP_LNK', 'https://t.me/dhanu_movie_adda')
+CHNL_LNK = environ.get('CHNL_LNK', 'https://t.me/+-F3weXinQdo4NzQ1')
+OWNER_LNK = environ.get('OWNER_LNK', 'https://t.me/attitude_boy_dhanu')
 DEENDAYAL_MOVIE_UPDATE_CHANNEL_LNK = environ.get('DEENDAYAL_MOVIE_UPDATE_CHANNEL_LNK', 'https://t.me/+dNzODJvGHIU2NTE1')
 OWNERID = int(os.environ.get('OWNERID', '2089142494'))  # Replace with the actual admin ID
 
