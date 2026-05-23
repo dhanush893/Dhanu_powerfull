@@ -61,8 +61,8 @@ OWNER_UPI_ID = environ.get('OWNER_UPI_ID', 'sureshksambu3@ybl')
 # ============================
 # MongoDB Configuration
 # ============================
-DATABASE_URI = environ.get('DATABASE_URI', "mongodb+srv://hi:Preethu@cluster0.vpnst.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
-DATABASE_URI2 = environ.get('DATABASE_URI2', "mongodb+srv://hello:Preethu@cluster0.isgp5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+DATABASE_URI = environ.get('DATABASE_URI', "mongodb+srv://Dhanu:<db_password>@dhanu.pmyxo.mongodb.net/?appName=Dhanu")
+DATABASE_URI2 = environ.get('DATABASE_URI2', "mongodb+srv://Dhanu:<db_password>@dhanu.pmyxo.mongodb.net/?appName=Dhanu")
 DATABASE_NAME = environ.get('DATABASE_NAME', "imdb")
 COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Deendayal_files')
 
@@ -96,7 +96,7 @@ IS_TUTORIAL = bool(environ.get('IS_TUTORIAL', False))
 GRP_LNK = environ.get('GRP_LNK', 'https://t.me/dhanu_movie_adda')
 CHNL_LNK = environ.get('CHNL_LNK', 'https://t.me/+-F3weXinQdo4NzQ1')
 OWNER_LNK = environ.get('OWNER_LNK', 'https://t.me/attitude_boy_dhanu')
-DEENDAYAL_MOVIE_UPDATE_CHANNEL_LNK = environ.get('DEENDAYAL_MOVIE_UPDATE_CHANNEL_LNK', 'https://t.me/dhanu_movie_adda_04')
+DEENDAYAL_MOVIE_UPDATE_CHANNEL_LNK = environ.get('DEENDAYAL_MOVIE_UPDATE_CHANNEL_LNK', 'https://t.me/SD_Movie_Adda')
 OWNERID = int(os.environ.get('OWNERID', '23800722'))  # Replace with the actual admin ID
 
 # ============================
