@@ -46,7 +46,7 @@ DEENDAYAL_MOVIE_UPDATE_CHANNEL = int(environ.get('DEENDAYAL_MOVIE_UPDATE_CHANNEL
 PREMIUM_LOGS = int(environ.get('PREMIUM_LOGS', '0'))  # Premium logs channel id
 auth_channel = environ.get('AUTH_CHANNEL', '-1002657262381')  # Channel/Group ID for force sub (make sure bot is admin)
 DELETE_CHANNELS = [int(dch) if id_pattern.search(dch) else dch for dch in environ.get('DELETE_CHANNELS', '-1003256554840').split()]
-support_chat_id = environ.get('SUPPORT_CHAT_ID', '0')  # Support group id (make sure bot is admin)
+support_chat_id = environ.get('SUPPORT_CHAT_ID', '5498521781')  # Support group id (make sure bot is admin)
 reqst_channel = environ.get('REQST_CHANNEL_ID', '0')  # Request channel id (make sure bot is admin)
 AUTH_CHANNEL = [int(fch) if id_pattern.search(fch) else fch for fch in environ.get('AUTH_CHANNEL', '-1002151971318').split()]
 MULTI_FSUB = [int(channel_id) for channel_id in environ.get('MULTI_FSUB', '-1002657262381').split() if re.match(r'^-?\d+$', channel_id)]  # Channel for force sub (make sure bot is admin)
@@ -97,7 +97,7 @@ GRP_LNK = environ.get('GRP_LNK', 'https://t.me/dhanu_movie_adda')
 CHNL_LNK = environ.get('CHNL_LNK', 'https://t.me/+-F3weXinQdo4NzQ1')
 OWNER_LNK = environ.get('OWNER_LNK', 'https://t.me/attitude_boy_dhanu')
 DEENDAYAL_MOVIE_UPDATE_CHANNEL_LNK = environ.get('DEENDAYAL_MOVIE_UPDATE_CHANNEL_LNK', 'https://t.me/SD_Movie_Adda')
-OWNERID = int(os.environ.get('OWNERID', '23800722'))  # Replace with the actual admin ID
+OWNERID = int(os.environ.get('OWNERID', '5498521781'))  # Replace with the actual admin ID
 
 # ============================
 # User Configuration
@@ -142,7 +142,7 @@ auth_grp = environ.get('AUTH_GROUP')
 AUTH_CHANNEL = int(auth_channel) if auth_channel and id_pattern.search(auth_channel) else None
 AUTH_GROUPS = [int(ch) for ch in auth_grp.split()] if auth_grp else None
 REQST_CHANNEL = int(reqst_channel) if reqst_channel and id_pattern.search(reqst_channel) else None
-SUPPORT_CHAT_ID = int(support_chat_id) if support_chat_id and id_pattern.search(support_chat_id) else None
+SUPPORT_CHAT_ID = int(5498521781) if support_chat_id and id_pattern.search(5498521781) else None
 LANGUAGES = ["malayalam", "", "tamil", "", "english", "", "hindi", "", "telugu", "", "kannada", "", "gujarati", "", "marathi", "", "punjabi", ""]
 QUALITIES = ["360P", "", "480P", "", "720P", "", "1080P", "", "1440P", "", "2160P", ""]
 SEASONS = ["season 1" , "season 2" , "season 3" , "season 4", "season 5" , "season 6" , "season 7" , "season 8" , "season 9" , "season 10"]
