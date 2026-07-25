@@ -1,8 +1,8 @@
 class script(object):
-    START_TXT = """<b>ಬಾಸ್ 😈 {}, {}</b>\n\n<blockquote>ɪ ᴀᴍ ᴘᴏᴡᴇʀꜰᴜʟʟ ᴍᴏᴠɪᴇꜱ & ꜱᴇʀɪᴇꜱ ᴘʀᴏᴠɪᴅᴇʀ ʙᴏᴛ ᴊᴜꜱᴛ ꜱᴇɴᴅ ᴍᴇ ᴀɴʏ ᴍᴏᴠɪᴇꜱ & ꜱᴇʀɪᴇꜱ ɴᴀᴍᴇ. ☜</blockquote>\n\n<b>ᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ : <a href='t.me/ur_dhanush'>Ɗʜa֟፝nᴜ ⸙ </a>
+    START_TXT = """<b>ಬಾಸ್ 😈 {}, {}</b>\n\n<blockquote>ɪ ᴀᴍ ᴘᴏᴡᴇʀꜰᴜʟʟ ᴍᴏᴠɪᴇꜱ & ꜱᴇʀɪᴇꜱ ᴘʀᴏᴠɪᴅᴇʀ ʙᴏᴛ ᴊᴜꜱᴛ ꜱᴇɴᴅ ᴍᴇ ᴀɴʏ ᴍᴏᴠɪᴇꜱ & ꜱᴇʀɪᴇꜱ ɴᴀᴍᴇ. ☜</blockquote>\n\n<b>ᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ : <a href='t.me/ur_dhanush'>Ɗʜa֟፝nᴜ ⸙</a>
 </b>"""
 
-    GSTART_TXT = """<b>ಬಾಸ್ 😈 {}, {}</b>\n\n<blockquote>ɪ ᴀᴍ ᴘᴏᴡᴇʀꜰᴜʟʟ ᴍᴏᴠɪᴇꜱ & ꜱᴇʀɪᴇꜱ ᴘʀᴏᴠɪᴅᴇʀ ʙᴏᴛ ᴊᴜꜱᴛ ꜱᴇɴᴅ ᴍᴇ ᴀɴʏ ᴍᴏᴠɪᴇꜱ & ꜱᴇʀɪᴇꜱ ɴᴀᴍᴇ. ☜</blockquote>\n\n<b>ᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ : <a href='https://t.me/+dTWGxiBHXqY2Nzg1'>Ɗʜa֟፝nᴜ ⸙ </a>
+    GSTART_TXT = """<b>ಬಾಸ್ 😈 {}, {}</b>\n\n<blockquote>ɪ ᴀᴍ ᴘᴏᴡᴇʀꜰᴜʟʟ ᴍᴏᴠɪᴇꜱ & ꜱᴇʀɪᴇꜱ ᴘʀᴏᴠɪᴅᴇʀ ʙᴏᴛ ᴊᴜꜱᴛ ꜱᴇɴᴅ ᴍᴇ ᴀɴʏ ᴍᴏᴠɪᴇꜱ & ꜱᴇʀɪᴇꜱ ɴᴀᴍᴇ. ☜</blockquote>\n\n<b>ᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ : <a href='https://t.me/+dTWGxiBHXqY2Nzg1'>Ɗʜa֟፝nᴜ ⸙</a>
 </b>"""
     
     HELP_TXT = """<b>ಬಾಸ್ 😈 {},
