@@ -1,37 +1,3 @@
-
-import sys
-import glob
-import importlib
-from pathlib import Path
-from pyrogram import idle
-import logging
-import logging.config
-import time  
-
-# Get logging configurations
-logging.config.fileConfig('logging.conf')
-logging.getLogger().setLevel(logging.INFO)
-logging.getLogger("pyrogram").setLevel(logging.ERROR)
-logging.getLogger("imdbpy").setLevel(logging.ERROR)
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-)
-logging.getLogger("aiohttp").setLevel(logging.ERROR)
-logging.getLogger("aiohttp.web").setLevel(logging.ERROR)
-
-from pyrogram import Client, __version__
-from pyrogram.raw.all import layer
-from database.ia_filterdb import Media, Media2, tempDict, choose_mediaDB, db as clientDB
-from database.users_chats_db import db
-from info import *
-from utils import temp
-from typing import Union, Optional, AsyncGenerator
-from pyrogram import types
-from Script import script 
-from datetime import date, datetime 
-import pytz
-from aiohttp import web
 from plugins import web_server, check_expired_premium
 
 import asyncio
@@ -43,12 +9,16 @@ botStartTime = time.time()
 
 ppath = "plugins/*.py"
 files = glob.glob(ppath)
-DeendayalBot.start()
-loop = asyncio.get_event_loop()
 
 async def Deendayal_start():
     print('\n')
     print('Initalizing Deendayal Dhakad Bot')
+
+    # Start the Pyrogram client inside the running asyncio event loop.
+    # Calling DeendayalBot.start() synchronously at module import time
+    # creates an un-awaited coroutine on modern Python/Pyrogram versions.
+    await DeendayalBot.start()
+
     bot_info = await DeendayalBot.get_me()
     DeendayalBot.username = bot_info.username
     await initialize_clients()
@@ -80,7 +50,7 @@ async def Deendayal_start():
         exit()
     else:
         logging.info(f"Since primary DB have enough space ({free_dbSize}MB) left, It will be used for storing datas.")
-    await choose_mediaDB()   
+    await choose_mediaDB()
     me = await DeendayalBot.get_me()
     temp.ME = me.id
     temp.U_NAME = me.username
@@ -101,9 +71,14 @@ async def Deendayal_start():
     bind_address = "0.0.0.0"
     await web.TCPSite(app, bind_address, PORT).start()
     await idle()
-    
+
 if __name__ == '__main__':
     try:
-        loop.run_until_complete(Deendayal_start())
+        asyncio.run(Deendayal_start())
     except KeyboardInterrupt:
-        logging.info('Service Stopped Bye 👋')  
+        logging.info('Service Stopped Bye 👋')
+    finally:
+        try:
+            asyncio.run(DeendayalBot.stop())
+        except Exception:
+            pass
