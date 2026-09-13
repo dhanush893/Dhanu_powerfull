@@ -1,1 +1,3 @@
-python3 bot.py && python3 -m Deendayal_botz
+#!/bin/bash
+set -e
+exec python3 bot.py
