@@ -1,6 +1,9 @@
-
 FROM python:3.10.8
-RUN apt-get update && apt-get install -y --no-install-recommends git && rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git \
+    ffmpeg \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /Deendayal_botz
 COPY . /Deendayal_botz/
@@ -11,5 +14,3 @@ RUN pip3 install --no-cache-dir -U pip --root-user-action=ignore && \
     pip3 install --no-cache-dir -U -r requirements.txt --root-user-action=ignore
 
 CMD ["/bin/bash", "./start.sh"]
-
-
