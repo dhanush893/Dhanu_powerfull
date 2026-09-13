@@ -1,10 +1,43 @@
+import sys
+import glob
+import importlib
+from pathlib import Path
+from pyrogram import idle
+import logging
+import logging.config
+import time
+
+# Get logging configurations
+logging.config.fileConfig('logging.conf')
+logging.getLogger().setLevel(logging.INFO)
+logging.getLogger("pyrogram").setLevel(logging.ERROR)
+logging.getLogger("imdbpy").setLevel(logging.ERROR)
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
+logging.getLogger("aiohttp").setLevel(logging.ERROR)
+logging.getLogger("aiohttp.web").setLevel(logging.ERROR)
+
+from pyrogram import Client, __version__
+from pyrogram.raw.all import layer
+from database.ia_filterdb import Media, Media2, tempDict, choose_mediaDB, db as clientDB
+from database.users_chats_db import db
+from info import *
+from utils import temp
+from typing import Union, Optional, AsyncGenerator
+from pyrogram import types
+from Script import script
+from datetime import date, datetime
+import pytz
+from aiohttp import web
 from plugins import web_server, check_expired_premium
 
 import asyncio
-from pyrogram import idle
 from Deendayal_botz import DeendayalBot
 from util.keepalive import ping_server
 from Deendayal_botz.clients import initialize_clients
+
 botStartTime = time.time()
 
 ppath = "plugins/*.py"
@@ -15,8 +48,6 @@ async def Deendayal_start():
     print('Initalizing Deendayal Dhakad Bot')
 
     # Start the Pyrogram client inside the running asyncio event loop.
-    # Calling DeendayalBot.start() synchronously at module import time
-    # creates an un-awaited coroutine on modern Python/Pyrogram versions.
     await DeendayalBot.start()
 
     bot_info = await DeendayalBot.get_me()
@@ -42,7 +73,7 @@ async def Deendayal_start():
     await Media2.ensure_indexes()
     stats = await clientDB.command('dbStats')
     free_dbSize = round(512-((stats['dataSize']/(1024*1024))+(stats['indexSize']/(1024*1024))), 2)
-    if DATABASE_URI2 and free_dbSize<62: #if the primary db have less than 62MB left, use second DB.
+    if DATABASE_URI2 and free_dbSize < 62:
         tempDict["indexDB"] = DATABASE_URI2
         logging.info(f"Since Primary DB have only {free_dbSize} MB left, Secondary DB will be used to store datas.")
     elif DATABASE_URI2 is None:
@@ -64,21 +95,26 @@ async def Deendayal_start():
     tz = pytz.timezone('Asia/Kolkata')
     today = date.today()
     now = datetime.now(tz)
-    time = now.strftime("%H:%M:%S %p")
-    await DeendayalBot.send_message(chat_id=LOG_CHANNEL, text=script.RESTART_TXT.format(temp.B_LINK, today, time))
+    current_time = now.strftime("%H:%M:%S %p")
+    await DeendayalBot.send_message(chat_id=LOG_CHANNEL, text=script.RESTART_TXT.format(temp.B_LINK, today, current_time))
     app = web.AppRunner(await web_server())
     await app.setup()
     bind_address = "0.0.0.0"
     await web.TCPSite(app, bind_address, PORT).start()
     await idle()
 
-if __name__ == '__main__':
+async def main():
     try:
-        asyncio.run(Deendayal_start())
-    except KeyboardInterrupt:
-        logging.info('Service Stopped Bye 👋')
+        await Deendayal_start()
     finally:
         try:
-            asyncio.run(DeendayalBot.stop())
+            if DeendayalBot.is_connected:
+                await DeendayalBot.stop()
         except Exception:
             pass
+
+if __name__ == '__main__':
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        logging.info('Service Stopped Bye 👋')
