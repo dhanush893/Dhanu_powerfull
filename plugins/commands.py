@@ -18,7 +18,7 @@ from pyrogram.errors import FloodWait
 from pyrogram.types import *
 from database.ia_filterdb import Media, Media2, get_file_details, unpack_new_file_id, get_bad_files
 from database.users_chats_db import db, delete_all_msg
-from info import CHANNELS, FSUB_PICS, ADMINS,  LOG_CHANNEL, PICS, BATCH_FILE_CAPTION, CUSTOM_FILE_CAPTION, PROTECT_CONTENT, CHNL_LNK, REQST_CHANNEL, GRP_LNK, SUPPORT_CHAT_ID, MAX_B_TN, VERIFY, REACTIONS, HOW_TO_VERIFY, PICS, DEENDAYAL_VERIFIED_LOG, SUBSCRIPTION, DEENDAYAL_MOVIE_UPDATE_CHANNEL_LNK, STREAM_MODE, EMOJI_MODE, OWNER_LNK, OWNER_UPI_ID, QR_CODE
+from info import CHANNELS, FSUB_PICS, ADMINS, LOG_CHANNEL, PICS, NOR_IMG, BATCH_FILE_CAPTION, CUSTOM_FILE_CAPTION, PROTECT_CONTENT, CHNL_LNK, REQST_CHANNEL, GRP_LNK, SUPPORT_CHAT_ID, MAX_B_TN, VERIFY, REACTIONS, HOW_TO_VERIFY, PICS, DEENDAYAL_VERIFIED_LOG, SUBSCRIPTION, DEENDAYAL_MOVIE_UPDATE_CHANNEL_LNK, STREAM_MODE, EMOJI_MODE, OWNER_LNK, OWNER_UPI_ID, QR_CODE
 from utils import get_settings, get_size, is_subscribed,  save_group_settings, temp, verify_user, check_token, check_verification, get_token, get_shortlink, get_tutorial
 from database.connections_mdb import active_connection
 
@@ -36,7 +36,7 @@ BATCH_FILES = {}
 @Client.on_message(filters.command("start") & filters.incoming)
 async def start(client, message):
     # Log command receipt so Koyeb logs can confirm that Telegram updates reach this handler.
-    logger.info("Received /start from chat_id=%s user_id=%s", message.chat.id, getattr(message.from_user, "id", None))
+    logger.warning("Received /start from chat_id=%s user_id=%s", message.chat.id, getattr(message.from_user, "id", None))
 
     if EMOJI_MODE:    
         await message.react(emoji=random.choice(REACTIONS), big=True) 
@@ -90,7 +90,7 @@ async def start(client, message):
         await asyncio.sleep(0.4)
         await m.delete()        
         await message.reply_photo(
-            photo=random.choice(PICS),
+            photo=random.choice(PICS) if PICS else NOR_IMG,
             caption=script.START_TXT.format(message.from_user.mention, gtxt, temp.U_NAME, temp.B_NAME),
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
