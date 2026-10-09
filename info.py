@@ -60,10 +60,37 @@ OWNER_UPI_ID = environ.get('OWNER_UPI_ID', '')
 # ============================
 # MongoDB Configuration
 # ============================
-DATABASE_URI = environ.get('DATABASE_URI', '')
-DATABASE_URI2 = environ.get('DATABASE_URI2', '')
+DATABASE_URI = environ.get('DATABASE_URI', '').strip()
+DATABASE_URI2 = environ.get('DATABASE_URI2', '').strip()
 DATABASE_NAME = environ.get('DATABASE_NAME', 'imdb')
 COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Deendayal_files')
+
+# Fail early with an actionable message instead of PyMongo's confusing
+# "Empty host" traceback when Koyeb environment variables are missing.
+from urllib.parse import urlsplit
+
+def _validate_mongodb_uri(name, uri, required=True):
+    if not uri:
+        if required:
+            raise RuntimeError(
+                f"Missing required environment variable {name}. "
+                "Set it to your real MongoDB Atlas connection string in Koyeb."
+            )
+        return
+    try:
+        parsed = urlsplit(uri)
+        valid_scheme = parsed.scheme in ("mongodb", "mongodb+srv")
+        valid_host = bool(parsed.hostname)
+    except ValueError:
+        valid_scheme = valid_host = False
+    if not valid_scheme or not valid_host:
+        raise RuntimeError(
+            f"{name} is not a valid MongoDB URI. Copy the connection string "
+            "from MongoDB Atlas and set it in Koyeb without placeholder text."
+        )
+
+_validate_mongodb_uri("DATABASE_URI", DATABASE_URI)
+_validate_mongodb_uri("DATABASE_URI2", DATABASE_URI2, required=False)
 
 # ============================
 # Movie Notification & Update Settings
