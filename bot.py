@@ -75,12 +75,15 @@ async def Deendayal_start():
     free_dbSize = round(512-((stats['dataSize']/(1024*1024))+(stats['indexSize']/(1024*1024))), 2)
     if DATABASE_URI2 and free_dbSize < 62:
         tempDict["indexDB"] = DATABASE_URI2
-        logging.info(f"Since Primary DB have only {free_dbSize} MB left, Secondary DB will be used to store datas.")
-    elif DATABASE_URI2 is None:
-        logging.error("Missing second DB URI !\n\nAdd SECONDDB_URI now !\n\nExiting...")
-        exit()
+        logging.info(f"Primary DB has only {free_dbSize} MB left; using the secondary database.")
+    elif free_dbSize < 62:
+        logging.warning(
+            "Primary database is running low on the estimated 512 MB free quota "
+            f"({free_dbSize} MB remaining), but DATABASE_URI2 is not configured. "
+            "Continuing with the primary database."
+        )
     else:
-        logging.info(f"Since primary DB have enough space ({free_dbSize}MB) left, It will be used for storing datas.")
+        logging.info(f"Primary database has approximately {free_dbSize} MB of the estimated quota remaining.")
     await choose_mediaDB()
     me = await DeendayalBot.get_me()
     temp.ME = me.id
@@ -96,7 +99,13 @@ async def Deendayal_start():
     today = date.today()
     now = datetime.now(tz)
     current_time = now.strftime("%H:%M:%S %p")
-    await DeendayalBot.send_message(chat_id=LOG_CHANNEL, text=script.RESTART_TXT.format(temp.B_LINK, today, current_time))
+    if LOG_CHANNEL:
+        await DeendayalBot.send_message(
+            chat_id=LOG_CHANNEL,
+            text=script.RESTART_TXT.format(temp.B_LINK, today, current_time)
+        )
+    else:
+        logging.warning("LOG_CHANNEL is not configured; skipping restart notification.")
     app = web.AppRunner(await web_server())
     await app.setup()
     bind_address = "0.0.0.0"
@@ -111,7 +120,7 @@ async def main():
             if DeendayalBot.is_connected:
                 await DeendayalBot.stop()
         except Exception:
-            pass
+            logging.exception("Error while stopping the bot client")
 
 if __name__ == '__main__':
     try:
