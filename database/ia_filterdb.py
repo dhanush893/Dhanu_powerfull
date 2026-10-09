@@ -40,7 +40,7 @@ class Media(Document):
         indexes = ('$file_name', )
         collection_name = COLLECTION_NAME
 #secondary db
-client2 = AsyncIOMotorClient(DATABASE_URI2)
+client2 = AsyncIOMotorClient(DATABASE_URI2 or DATABASE_URI)
 db2 = client2[DATABASE_NAME]
 instance2 = Instance.from_db(db2)
 
