@@ -25,7 +25,7 @@ from database.connections_mdb import active_connection
 
 
 # Set up logging
-logging.basicConfig(level=logging.ERROR)
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
